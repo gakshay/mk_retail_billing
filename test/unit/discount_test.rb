@@ -1,7 +1,4 @@
-require File.dirname(__FILE__) + '/../../lib/discount.rb'
-
-require "test/unit"
-
+require File.dirname(__FILE__) + '/../test_helper'
 
 # This is the test Class for Discount module
 # containing unit test cases for the same.

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby -wKU
 # encoding: UTF-8
 
-require File.dirname(__FILE__) + '/lib/item.rb'
+require File.dirname(__FILE__) + '/lib/product.rb'
 require File.dirname(__FILE__) + '/lib/grocery.rb'
 require File.dirname(__FILE__) + '/lib/non_grocery.rb'
 require File.dirname(__FILE__) + '/lib/bill.rb'
@@ -29,13 +29,13 @@ items << NonGrocery.new("WoddenChair", "229")
 items << NonGrocery.new("PlasticBalls", "39.29")
 items << Grocery.new("DozenEggs", "29.45")
 items << NonGrocery.new("Mobile", "214.89")
-items << Item.new("CottonShirt", "35.99")
+items << Product.new("CottonShirt", "35.99")
 items << Grocery.new("RiceBag", "74.99")
 items <<  NonGrocery.new("GiftItem", "47.89")
-items <<  Item.new("TeddyBear", "47.79")
+items <<  Product.new("TeddyBear", "47.79")
 items <<  Grocery.new("FrozenPear", "23.45")
 items <<  NonGrocery.new("LaptopTable", "179.99")
-items <<  Item.new("EarPhone", "27.99")
+items <<  Product.new("EarPhone", "27.99")
 items <<  Grocery.new("UradPulses", "44.85")
 
 # Create a bill with for a random user 

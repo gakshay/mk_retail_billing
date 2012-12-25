@@ -11,7 +11,7 @@ module Error
   class BillError < StandardError
   end
   
-  # Item related error handling
-  class ItemError < StandardError
+  # Product related error handling
+  class ProductError < StandardError
   end
 end

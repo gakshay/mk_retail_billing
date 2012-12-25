@@ -1,0 +1,11 @@
+require 'rubygems'
+require 'test/unit'
+
+require File.dirname(__FILE__) + '/../lib/bill.rb'
+require File.dirname(__FILE__) + '/../lib/product.rb'
+require File.dirname(__FILE__) + '/../lib/grocery.rb'
+require File.dirname(__FILE__) + '/../lib/non_grocery.rb'
+require File.dirname(__FILE__) + '/../lib/discount.rb'
+require File.dirname(__FILE__) + '/../lib/user.rb'
+require File.dirname(__FILE__) + '/../lib/error.rb'
+require File.dirname(__FILE__) + '/../lib/role.rb'

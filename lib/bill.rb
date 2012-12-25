@@ -74,7 +74,7 @@ class Bill
     print "Bill no: #{@bill_number} \t Bill date: #{@bill_date}\n"
     puts "Customer Name: #{@user.name} \t Mobile: #{@user.mobile} \t Type: #{@user.role}"
     puts line
-    puts "S.No \t Item Name\t Item Type \t Unit Price \t Quant \t Price \n"
+    puts "S.No \t Product Name\t Type \t Unit Price \t Quant \t Price \n"
     @cart_items.each_with_index do |item, index|
       puts " #{index+1} \t #{item[:name].to_s.ljust(10)} \t #{item[:type].to_s.ljust(10)} \t #{item[:unit_price].to_s.ljust(10)} \t #{item[:quantity].to_s.ljust(5)} \t #{item[:price].to_s.rjust(5)} "
     end

@@ -1,7 +1,4 @@
-require File.dirname(__FILE__) + '/../../lib/user.rb'
-
-require "test/unit"
-
+require File.dirname(__FILE__) + '/../test_helper'
 
 # This is the test Class for User class
 # containing unit test cases for the same.
