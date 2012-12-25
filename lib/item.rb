@@ -7,12 +7,16 @@ require File.dirname(__FILE__) + '/error.rb'
 class Item
   attr_accessor :name, :unit_price, :stock
   
-  def initialize(name, unit_price, stock = nil)
-    raise Error::ItemError, "Name can't be blank" unless name
-    raise Error::ItemError, "Unit Price can't be blank" if unit_price.nil? 
+  # input
+  # name: item name 
+  # unit_price: unit_price of the item
+  # stock (optional): number of units in stock of the given item, default: 100
+  def initialize(name, unit_price, stock = 100)
+    raise Error::ItemError, "Name can't be blank" if name.nil? || name.empty?
+    raise Error::ItemError, "Unit Price can't be blank" if unit_price.nil?  || unit_price.empty?
     @name = name
-    @unit_price = unit_price.to_f
-    @stock = stock.nil? ? 100 : stock
+    @unit_price = unit_price.to_f.round(2)
+    @stock = stock
   end
   
   # checks if an item is out of stock or not. 
