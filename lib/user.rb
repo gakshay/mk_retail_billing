@@ -15,12 +15,14 @@ class User
   # :doj => Time object (optional), defaults: Time.now
   # :role => Role (optional), defaults: Role::GENERAL  
   def initialize(options = {})
-    raise Error::UserError, "Name can't be blank" unless options[:name]
-    raise Error::UserError, "Mobile can't be blank" unless options[:mobile]
     @name = options[:name] 
-    @mobile = options[:mobile] 
-    @doj = options[:doj].nil? ? Time.now : options[:doj]
-    @role = options[:role].nil? ? Role::GENERAL : options[:role]
+    @mobile = options[:mobile]
+    doj = options[:doj]
+    role = options[:role]
+    raise Error::UserError, "Name can't be blank" if @name.nil? || @name.empty?
+    raise Error::UserError, "Mobile can't be blank" if @mobile.nil? || @mobile.empty?
+    @doj = doj.nil? ? Time.now : doj
+    @role = role.nil? ? Role::GENERAL : role
   end
   
   # class method to create a guest user on the fly

@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../../lib/item.rb'
 require "test/unit"
 
 
-# This is the test Class for person model
+# This is the test Class for Item Class
 # containing unit test cases for the same.
 
 class ItemTest < Test::Unit::TestCase

@@ -25,19 +25,29 @@ class Bill
   def add_item(item, quantity = 1)
     nil if quantity <= 0
     # TODO: check the stock availability
-    @cart_items << {:name => item.name, :quantity => quantity, :type => item.class, :unit_price => item.unit_price, :price => (item.unit_price * quantity).round(2)}
-    @total_amount += (item.unit_price * quantity).round(2)
-    @discountable_amount += (item.unit_price * quantity).round(2) if (item.class.name != "Grocery")
+    unit_price = item.unit_price
+    price = (unit_price * quantity).round(2)
+    type = item.class.name
+    update_cart(item.name, quantity, type, unit_price, price)
+    @total_amount += price
+    @discountable_amount += price if (type != "Grocery")
     # TODO: code to subtract item quantity from the inventory
   end
   
   # remove an item to the cart with quantity for billing
   def remove_item(item, quantity = 1)
     nil if quantity <= 0
-    @cart_items << {:name => item.name, :quantity => quantity, :type => item.class, :unit_price => item.unit_price, :price => (item.unit_price * quantity).round(2), :remove => true}
-    @total_amount -= (item.unit_price * quantity).round(2)
-    @discountable_amount -= (item.unit_price * quantity).round(2) if (item.class.name != "Grocery")
+    unit_price = item.unit_price
+    price = (unit_price * quantity).round(2)
+    type = item.class.name
+    update_cart(item.name, quantity, type, unit_price, price)
+    @total_amount -= price
+    @discountable_amount -= price if (type != "Grocery")
     # TODO: code to add the item back to stock
+  end
+  
+  def update_cart(name, quantity, type, unit_price, price)
+    @cart_items << {:name => name, :quantity => quantity, :type => type, :unit_price => unit_price, :price => price}
   end
   
   # generate the final bill with discounts and net amount to be paid
@@ -56,22 +66,25 @@ class Bill
   end
   
   def print_bill
-    puts "----------------------------------------------------------------------------"
+    line = "----------------------------------------------------------------------------"
+    
+    puts line
     puts "McKinsey: Retail Bill Reciept".rjust(50)
-    puts "----------------------------------------------------------------------------"
+    puts line
     print "Bill no: #{@bill_number} \t Bill date: #{@bill_date}\n"
     puts "Customer Name: #{@user.name} \t Mobile: #{@user.mobile} \t Type: #{@user.role}"
-    puts "----------------------------------------------------------------------------"
+    puts line
     puts "S.No \t Item Name\t Item Type \t Unit Price \t Quant \t Price \n"
-    @cart_items.each_with_index do |item, i|
-      puts " #{i+1} \t #{item[:name].to_s.ljust(10)} \t #{item[:type].to_s.ljust(10)} \t #{item[:unit_price].to_s.ljust(10)} \t #{item[:quantity].to_s.ljust(5)} \t #{item[:price].to_s.rjust(5)} "
+    @cart_items.each_with_index do |item, index|
+      puts " #{index+1} \t #{item[:name].to_s.ljust(10)} \t #{item[:type].to_s.ljust(10)} \t #{item[:unit_price].to_s.ljust(10)} \t #{item[:quantity].to_s.ljust(5)} \t #{item[:price].to_s.rjust(5)} "
     end
-    puts "----------------------------------------------------------------------------"
+    puts line
     puts "Total Amount: #{@total_amount.round(2)}".rjust(70)
     puts "Discountable Amount: #{@discountable_amount.to_f.round(2)}".rjust(70)
-    puts "Discount: #{@percentage_discount.to_f.round(2)} + #{@gross_discount.to_f.round(2)}".rjust(70)
-    puts "Discount: #{@discount.to_f.round(2)}".rjust(70)
+    puts "Percentage Discount: #{@percentage_discount.to_f.round(2)}".rjust(70)
+    puts "Gross Discount: #{@gross_discount.to_f.round(2)}".rjust(70)
+    puts "Total Discount: #{@discount.to_f.round(2)}".rjust(70)
     puts "Net Payable Amount: #{@net_amount.to_f.round(2)}".rjust(70)
-    puts "----------------------------------------------------------------------------\n"
+    puts line
   end
 end
