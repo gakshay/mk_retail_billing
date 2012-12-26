@@ -23,10 +23,25 @@ Requirement
 
 ruby > 1.9.1
 
+Solution
+========
+
+Current solution is terminal based solution using Ruby language, covers the object and class structure. It can easily be converted into a web application using Rails framework where DB will have seed data.
+
+
+
 Usage
 =====
 
-ruby run.rb # for sample seed data, random bill generation and discounts
+**Seed Data**
+  `seed_data.rb` contains some seed data for users and products that are available for purchase
+
+**Automatic Bill**
+  `ruby random_bill.rb` will generate a automatic bill for any type of user, any number of items and print the bill with exact discounts and net amount to be paid
+
+**Manual Bill**
+  `ruby manual_bill.rb` will prompt for user id, and ask for number of items and generate a bill. It can be further broken down to select an item recursively. 
+
 
 Design Flow
 ===========
@@ -51,3 +66,8 @@ test/
     discount_test.rb
     bill_test.rb
 
+
+TO-DO
+=====
+
+Create a web application where a Retailer can select a user or create a new user. Add items to the cart and then bill after applying discounts depending upon User Roles. 
