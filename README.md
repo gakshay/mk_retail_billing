@@ -41,6 +41,12 @@ Usage
 
 **Manual Bill**
   `ruby manual_bill.rb` will prompt for user id, and ask for number of items and generate a bill. It can be further broken down to select an item recursively. 
+  
+Test Cases
+==========
+
+Included unit test cases for different classes, objects and methods
+`rake` or `rake test` in the command prompt to run all the test cases.
 
 
 Design Flow
