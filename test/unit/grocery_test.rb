@@ -7,6 +7,7 @@ class GroceryTest < Test::Unit::TestCase
   
   def test_grocery_is_inherited_from_product
     grocery = Grocery.new("Milk", "24.99")
+    assert_instance_of Grocery, grocery
     assert_equal grocery.class.superclass.name, "Product"
   end
 end
