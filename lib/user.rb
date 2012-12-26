@@ -42,6 +42,8 @@ class User
     end
   end
   
+  private
+  
   # calculates customer's joining date in number of years
   def old_in_years
     (Time.now - @doj)/(60*60*24*365) unless self.doj.nil?

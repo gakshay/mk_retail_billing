@@ -46,7 +46,7 @@ bill = Bill.new(user) # initialize bill for selected user
 (rand(15) + 1).times.each do |number|
   quantity = rand(5) + 1
   item = items[rand(items.length)]
-  bill.add_item(item, quantity)
+  bill.add_to_cart(item, quantity)
 end
 
 # generate the final bill

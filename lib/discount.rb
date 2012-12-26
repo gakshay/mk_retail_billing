@@ -35,6 +35,21 @@ module Discount
       end
     end
     
+    # responsible for gross bill discount if amount is greather than min_discountable_amount
+    # independent on the type of user and is just applicable on min_discountable_amount
+    # here amount should be total amount of the bill
+    def calculate_gross_bill_discount(total_amount)
+      @total_amount = total_amount
+      if @total_amount > Discount::MIN_DISCOUNTABLE_AMOUNT
+        ((@total_amount.to_i / Discount::MIN_DISCOUNTABLE_AMOUNT) * Discount::MIN_GROSS_BILL_DISCOUNT).round(2)
+      else
+        Discount::ZERO_DISCOUNT
+      end
+    end
+    
+    
+    private 
+    
     # calculates the staff discount if the user is retailers employee
     def calculate_staff_discount
       (@discountable_amount * STAFF_DISCOUNT / 100).to_f.round(2)
@@ -48,18 +63,6 @@ module Discount
     # calculates the loyality discount for the loyal user
     def calculate_loyality_discount
       (@discountable_amount * LOYALITY_DISCOUNT / 100).to_f.round(2)
-    end
-    
-    # responsible for gross bill discount if amount is greather than min_discountable_amount
-    # independent on the type of user and is just applicable on min_discountable_amount
-    # here amount should be total amount of the bill
-    def calculate_gross_bill_discount(total_amount)
-      @total_amount = total_amount
-      if @total_amount > Discount::MIN_DISCOUNTABLE_AMOUNT
-        ((@total_amount.to_i / Discount::MIN_DISCOUNTABLE_AMOUNT) * Discount::MIN_GROSS_BILL_DISCOUNT).round(2)
-      else
-        Discount::ZERO_DISCOUNT
-      end
     end
     
   end # << self
